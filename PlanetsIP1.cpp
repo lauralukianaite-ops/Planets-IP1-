@@ -24,9 +24,13 @@ class Planet{
             setGravity(gravity);
             setMoons(moons);
         }
+    
+    private:
         void setName(string name){
             this->name = name;
         }
+    
+    public:
         void setGravity(double gravity){
             this->gravity = gravity;
         }
@@ -53,6 +57,8 @@ class Planet{
 
 int main(){
     Planet p("Earth",9.81,1);
-    cout << p.toString();
+    cout << p.toString() << endl;
+    p.setGravity(9.8);
+    cout << p.toString() <<endl;
     return 0;
 }
