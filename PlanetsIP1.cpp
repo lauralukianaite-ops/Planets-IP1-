@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <exception>
+#include <stdexcept>
 
 using namespace std;
 
@@ -33,7 +35,10 @@ class Planet{
     
     public:
         void setGravity(double gravity){
-            this->gravity = gravity;
+            if(gravity > 0)
+                this->gravity = gravity;
+            else 
+                throw invalid_argument("Exception in Planet: gravity must be positive!");
         }
         void setMoons(int moons){
             this->moons = moons;
@@ -57,9 +62,13 @@ class Planet{
 };
 
 int main(){
-    Planet p("Earth",9.81,1);
-    cout << p.toString() << endl;
-    p.setGravity(9.8);
-    cout << p.toString() <<endl;
+    try{
+        Planet p("Earth",-9.81,-1);
+        cout << p.toString() << endl;
+        p.setGravity(-9.8);
+        cout << p.toString() <<endl;
+    }catch(...){
+        cout << "Unexpected error occured!" <<endl;
+    }
     return 0;
 }
