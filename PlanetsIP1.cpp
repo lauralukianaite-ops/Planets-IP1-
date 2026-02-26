@@ -15,17 +15,18 @@ class Planet{
         
     public:
         Planet(string name){
-            setName(name);
-            setGravity(0.0);
-            setMoons(0);
+            init(name,0.0,0);
         }
         Planet(string name, double gravity, int moons){
+            init(name,gravity,moons);
+        }
+    
+    private:
+        void init(string name, double gravity, int moons){
             setName(name);
             setGravity(gravity);
             setMoons(moons);
         }
-    
-    private:
         void setName(string name){
             this->name = name;
         }
