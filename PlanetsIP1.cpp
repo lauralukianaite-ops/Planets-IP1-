@@ -26,9 +26,21 @@ class Planet{
     private:
         void init(string name, double gravity, int moons){
             setName(name);
-            setGravity(gravity);
-            setMoons(moons);
+            string errors = "";
+            try{
+                setGravity(gravity);
+            }catch(exception &e){
+                errors += string(e.what()) + "\n";
+            }
+            try{
+                setMoons(moons);
+            }catch(exception &e){
+                errors += string(e.what()) + "\n";
+            }
+            if(!errors.empty()) 
+                throw invalid_argument(errors);
         }
+        
         void setName(string name){
             this->name = name;
         }
@@ -44,7 +56,7 @@ class Planet{
             if(moons>=0)
                 this->moons = moons;
             else
-                throw invalid_argument("exception in Planet: number of moons connot be negative!");
+                throw invalid_argument("Exception in Planet: number of moons connot be negative!");
         }
 
         string getName (){
@@ -66,10 +78,15 @@ class Planet{
 
 int main(){
     try{
-        Planet p("Earth",-9.81,-1);
-        cout << p.toString() << endl;
-        p.setGravity(-9.8);
-        cout << p.toString() <<endl;
+        try{
+            Planet p("Earth",-9.81,-1);
+        }catch(exception &e){
+            cout << e.what() << endl;
+        }
+        
+        //cout << p.toString() << endl;
+        //p.setGravity(-9.8);
+        //cout << p.toString() <<endl;
     }catch(...){
         cout << "Unexpected error occured!" <<endl;
     }
