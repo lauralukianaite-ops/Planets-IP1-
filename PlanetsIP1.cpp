@@ -41,7 +41,10 @@ class Planet{
                 throw invalid_argument("Exception in Planet: gravity must be positive!");
         }
         void setMoons(int moons){
-            this->moons = moons;
+            if(moons>=0)
+                this->moons = moons;
+            else
+                throw invalid_argument("exception in Planet: number of moons connot be negative!");
         }
 
         string getName (){
