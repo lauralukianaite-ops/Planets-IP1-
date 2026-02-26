@@ -11,6 +11,16 @@ class Planet{
         double gravity;
         int moons;
     public:
+        Planet(string name){
+            setName(name);
+            setGravity(0.0);
+            setMoons(0);
+        }
+        Planet(string name, double gravity, int moons){
+            setName(name);
+            setGravity(gravity);
+            setMoons(moons);
+        }
         void setName(string name){
             this->name = name;
         }
@@ -33,10 +43,7 @@ class Planet{
 };
 
 int main(){
-    Planet p; //objekto instancija
-    p.setName("Earth");
-    p.setGravity(9.81);
-    p.setMoons(1);
+    Planet p("Earth",9.81,1);
     cout << "Success!" <<endl;
     return 0;
 }
