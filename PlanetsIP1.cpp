@@ -7,10 +7,12 @@ using namespace std;
 
 //klases aprasymas
 class Planet{
+
     private: //tiesiogiai pasiekti duomenis nera gerai, reikia naudoti private
         string name;
         double gravity;
         int moons;
+        
     public:
         Planet(string name){
             setName(name);
