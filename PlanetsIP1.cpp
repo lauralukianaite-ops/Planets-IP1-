@@ -1,6 +1,7 @@
 //Planet(name,gravity,moons)
 #include <iostream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -40,10 +41,16 @@ class Planet{
         int getMoons(){
             return moons;
         }
+
+        string toString(){
+            stringstream ss;
+            ss << getName() << " " << getGravity() << " " << getMoons() << endl;
+            return ss.str();
+        }
 };
 
 int main(){
     Planet p("Earth",9.81,1);
-    cout << "Success!" <<endl;
+    cout << p.toString();
     return 0;
 }
