@@ -84,7 +84,7 @@ class Planet{
             return count;
         }
 
-        string toString(){
+        string to_string(){
             stringstream ss;
             ss << getId() << " " << getName() << " " << getGravity() << " " << getMoons();
             return ss.str();
@@ -103,7 +103,7 @@ int main(){
             assert(p.getName() == "Earth");
             assert(p.getGravity() == 9.81);
             assert(p.getMoons() == 1);
-            assert(p.toString() == "0 Earth 9.81 1"); 
+            assert(p.to_string() == "0 Earth 9.81 1"); 
         }
         cout << "PASS" << endl;
         
