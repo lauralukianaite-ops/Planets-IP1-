@@ -11,11 +11,14 @@ using namespace std;
 class Planet{
 
     private: //tiesiogiai pasiekti duomenis nera gerai, reikia naudoti private
-        int id;
-        static int lastId;
         string name;
         double gravity;
         int moons;
+
+        int id;
+        static int lastId;
+        static int count;
+
     public:
         Planet(string name){
             init(name,0.0,0);
@@ -23,9 +26,14 @@ class Planet{
         Planet(string name, double gravity, int moons){
             init(name,gravity,moons);
         }
+        //Destruktorius:
+        ~Planet(){
+            count--;
+        }
     
     private:
         void init(string name, double gravity, int moons){
+            count++;
             setName(name);
             id = lastId++;
             this->moons = 0;
@@ -74,6 +82,9 @@ class Planet{
         int getMoons(){
             return moons;
         }
+        static int getCount(){
+            return count;
+        }
 
         string toString(){
             stringstream ss;
@@ -83,6 +94,7 @@ class Planet{
 };
 
 int Planet::lastId = 0;
+int Planet::count=0;
 
 int main(){
     try{
