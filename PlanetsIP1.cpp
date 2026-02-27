@@ -34,7 +34,6 @@ class Planet{
     
     private:
         void init(string name, double gravity, int moons){
-            count++;
             setName(name);
             id = lastId++;
             this->moons = 0;
@@ -51,6 +50,7 @@ class Planet{
             }
             if(!errors.empty()) 
                 throw invalid_argument(errors);
+            count++;
         }
 
     public:
@@ -139,16 +139,33 @@ int main(){
         }
         cout << "PASS" <<endl;
 
-        //test3: patikrinti ar velidacija meta exception
+        //test4: patikrinti ar velidacija meta exception
         cout << "Test4: ";
         {
             Planet p1("Earth", 9.81, 1);
-            Planet p2("Mars", 3.72, 0);
+            Planet p2("Mars", 3.72, 2);
             Planet p3("Venus", 8.87, 0);
             assert(p1.getId() < p2.getId());
             assert(p2.getId() < p3.getId());
         }
         cout << "PASS" << endl;
+
+        //test5: tikrinamas dinaminis sarasas, count
+        cout << "Test5: ";
+        {
+            assert(Planet::getCount() == 0); //atmintyje dar nera jokiu objektu
+            Planet *p1 = new Planet("Earth", 9.81, 1);
+            assert(Planet::getCount() == 1);
+            Planet *p2 = new Planet("Mars", 3.72, 2);
+            assert(Planet::getCount() == 2);
+
+            delete p1;
+            assert(Planet::getCount()==1);
+            delete p2;
+            assert(Planet::getCount()==0);
+        }
+        cout << "PASS" << endl;
+
     }catch(...){
         cout << "Unexpected error occured!" << endl;
     }
