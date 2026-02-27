@@ -8,10 +8,9 @@
 
 using namespace std;
 
-//klases aprasymas
 class Planet{
 
-    private: //tiesiogiai pasiekti duomenis nera gerai, reikia naudoti private
+    private:
         string name;
         double gravity;
         int moons;
@@ -35,8 +34,6 @@ class Planet{
     private:
         void init(string name, double gravity, int moons){
             setName(name);
-            id = lastId++;
-            this->moons = 0;
             string errors = "";
             try{
                 setGravity(gravity);
@@ -50,6 +47,7 @@ class Planet{
             }
             if(!errors.empty()) 
                 throw invalid_argument(errors);
+            id = lastId++;
             count++;
         }
 
@@ -58,16 +56,16 @@ class Planet{
             this->name = name;
         }
         void setGravity(double gravity){
-            if(gravity > 0)
+            if(gravity >= 0)
                 this->gravity = gravity;
             else 
                 throw invalid_argument("Exception in Planet: gravity must be positive!");
         }
         void setMoons(int moons){
-            if((moons>=0) && (moons >= this-> moons))
+            if(moons>=0)
                 this->moons = moons;
             else
-                throw invalid_argument("Exception in Planet: number of moons connot be negative and cannot decrease!");
+                throw invalid_argument("Exception in Planet: number of moons cannot be negative and cannot decrease!");
         }
         
         int getId(){
@@ -122,7 +120,7 @@ int main(){
         }
         cout << "PASS" <<endl;
 
-        //test3: patikrinti ar velidacija meta exception
+        //test3: patikrinti ar validacija meta exception
         cout << "Test3: ";
         {
             try{
