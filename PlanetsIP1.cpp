@@ -154,15 +154,22 @@ int main(){
         cout << "Test5: ";
         {
             assert(Planet::getCount() == 0); //atmintyje dar nera jokiu objektu
-            Planet *p1 = new Planet("Earth", 9.81, 1);
-            assert(Planet::getCount() == 1);
-            Planet *p2 = new Planet("Mars", 3.72, 2);
-            assert(Planet::getCount() == 2);
+            int size = 3;
+            //sukuriamas rodykliu masyvas/sarasas
+            Planet **planets = new Planet*[size];
 
-            delete p1;
-            assert(Planet::getCount()==1);
-            delete p2;
-            assert(Planet::getCount()==0);
+            planets[0] = new Planet("Mercury",3.7,0);
+            planets[1] = new Planet("Jupiter",24.79,79);
+            planets[2] = new Planet("Saturn",10.44,82);
+
+            assert(Planet::getCount() == 3);
+
+            for(int i = 0; i < size; i++){
+                delete planets[i];
+            }
+            delete[] planets;
+
+            assert(Planet::getCount() == 0);
         }
         cout << "PASS" << endl;
 
