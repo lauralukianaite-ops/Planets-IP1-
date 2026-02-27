@@ -105,9 +105,9 @@ int main(){
             assert(p.getName() == "Earth");
             assert(p.getGravity() == 9.81);
             assert(p.getMoons() == 1);
-            assert(p.toString() == "0 Earth 9.81 1");
-            cout << "PASS" << endl;
+            assert(p.toString() == "0 Earth 9.81 1"); 
         }
+        cout << "PASS" << endl;
         
         //test2: seteriai keicia reiksmes
         cout << "Test2: ";
@@ -119,8 +119,26 @@ int main(){
             assert(p.getGravity() == 8.87);
             p.setMoons(3);
             assert(p.getMoons() == 3);
-            cout << "PASS" <<endl;
         }
+        cout << "PASS" <<endl;
+
+        //test3: patikrinti ar velidacija meta exception
+        cout << "Test3: ";
+        {
+            try{
+                Planet p("Earth",-1.0,-1);
+                assert(false);
+            }catch(invalid_argument &e){
+            }
+            try{
+                Planet p("Earth", 9.81, 1);
+                p.setGravity(-5.0);
+                assert(false);
+            }catch(invalid_argument &e){
+            }
+        }
+        cout << "PASS" <<endl;
+
     }catch(...){
         cout << "Unexpected error occured!" << endl;
     }
