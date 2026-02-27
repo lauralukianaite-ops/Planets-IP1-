@@ -52,11 +52,10 @@ class Planet{
                 throw invalid_argument(errors);
         }
 
+    public:
         void setName(string name){
             this->name = name;
         }
-    
-    public:
         void setGravity(double gravity){
             if(gravity > 0)
                 this->gravity = gravity;
