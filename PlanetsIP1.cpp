@@ -100,13 +100,27 @@ int main(){
     try{
         //test1: kurti objekta, getteriai grazina teisingas reiksmes, veikia toString
         cout << "Test1: ";
-        Planet p("Earth",9.81,1);
-        cout << p.toString() << endl;
-        assert(p.getName() == "Earth");
-        assert(p.getGravity() == 9.81);
-        assert(p.getMoons() == 1);
-        assert(p.toString() == "0 Earth 9.81 1");
-        cout << "PASS" << endl;
+        {
+            Planet p("Earth",9.81,1);
+            assert(p.getName() == "Earth");
+            assert(p.getGravity() == 9.81);
+            assert(p.getMoons() == 1);
+            assert(p.toString() == "0 Earth 9.81 1");
+            cout << "PASS" << endl;
+        }
+        
+        //test2: seteriai keicia reiksmes
+        cout << "Test2: ";
+        {
+            Planet p("Mars",3.72,2);
+            p.setName("Venus");
+            assert(p.getName() == "Venus");
+            p.setGravity(8.87);
+            assert(p.getGravity() == 8.87);
+            p.setMoons(3);
+            assert(p.getMoons() == 3);
+            cout << "PASS" <<endl;
+        }
     }catch(...){
         cout << "Unexpected error occured!" << endl;
     }
