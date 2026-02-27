@@ -14,7 +14,7 @@ class Planet{
         string name;
         double gravity;
         int moons;
-
+        
         int id;
         static int lastId;
         static int count;
@@ -31,7 +31,6 @@ class Planet{
             count--;
         }
     
-    private:
         void init(string name, double gravity, int moons){
             setName(name);
             string errors = "";
@@ -51,7 +50,6 @@ class Planet{
             count++;
         }
 
-    public:
         void setName(string name){
             this->name = name;
         }
