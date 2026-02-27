@@ -11,10 +11,11 @@ using namespace std;
 class Planet{
 
     private: //tiesiogiai pasiekti duomenis nera gerai, reikia naudoti private
+        int id;
+        static int lastId;
         string name;
         double gravity;
         int moons;
-        
     public:
         Planet(string name){
             init(name,0.0,0);
@@ -26,6 +27,8 @@ class Planet{
     private:
         void init(string name, double gravity, int moons){
             setName(name);
+            id = lastId++;
+            this->moons = 0;
             string errors = "";
             try{
                 setGravity(gravity);
@@ -58,7 +61,10 @@ class Planet{
             else
                 throw invalid_argument("Exception in Planet: number of moons connot be negative and cannot decrease!");
         }
-
+        
+        int getId(){
+            return id;
+        }
         string getName (){
             return name;
         }
@@ -71,26 +77,21 @@ class Planet{
 
         string toString(){
             stringstream ss;
-            ss << getName() << " " << getGravity() << " " << getMoons() << endl;
+            ss << getId() << " " << getName() << " " << getGravity() << " " << getMoons() << endl;
             return ss.str();
         }
 };
 
+int Planet::lastId = 0;
+
 int main(){
     try{
-        try{
-            Planet p("Earth",-9.81,-1);
-        }catch(exception &e){
-            cout << e.what() << endl;
-        }
-        Planet p("Earth",9.81,4);
-        cout << p.toString() << endl;
-        try{
-            p.setMoons(3);
-        }catch(exception &e){
-            cout << e.what() << endl;
-        }
-        cout << p.toString() << endl;
+        Planet p1("Earth",9.81,1);
+        Planet p2("Earth",9.81,1);
+        Planet p3("Earth",9.81,1);
+        cout << p1.toString() << endl;
+        cout << p2.toString() << endl;
+        cout << p3.toString() << endl;
     }catch(...){
         cout << "Unexpected error occured!" << endl;
     }
