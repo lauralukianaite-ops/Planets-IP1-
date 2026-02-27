@@ -33,6 +33,7 @@ class Planet{
     
         void init(string name, double gravity, int moons){
             setName(name);
+            id = lastId++;
             string errors = "";
             try{
                 setGravity(gravity);
@@ -46,7 +47,6 @@ class Planet{
             }
             if(!errors.empty()) 
                 throw invalid_argument(errors);
-            id = lastId++;
             count++;
         }
 
