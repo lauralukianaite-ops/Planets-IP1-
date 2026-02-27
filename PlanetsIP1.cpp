@@ -4,6 +4,7 @@
 #include <sstream>
 #include <exception>
 #include <stdexcept>
+#include <cassert>
 
 using namespace std;
 
@@ -87,7 +88,7 @@ class Planet{
 
         string toString(){
             stringstream ss;
-            ss << getId() << " " << getName() << " " << getGravity() << " " << getMoons() << endl;
+            ss << getId() << " " << getName() << " " << getGravity() << " " << getMoons();
             return ss.str();
         }
 };
@@ -97,12 +98,15 @@ int Planet::count=0;
 
 int main(){
     try{
-        Planet p1("Earth",9.81,1);
-        Planet p2("Earth",9.81,1);
-        Planet p3("Earth",9.81,1);
-        cout << p1.toString() << endl;
-        cout << p2.toString() << endl;
-        cout << p3.toString() << endl;
+        //test1: kurti objekta, getteriai grazina teisingas reiksmes, veikia toString
+        cout << "Test1: ";
+        Planet p("Earth",9.81,1);
+        cout << p.toString() << endl;
+        assert(p.getName() == "Earth");
+        assert(p.getGravity() == 9.81);
+        assert(p.getMoons() == 1);
+        assert(p.toString() == "0 Earth 9.81 1");
+        cout << "PASS" << endl;
     }catch(...){
         cout << "Unexpected error occured!" << endl;
     }
