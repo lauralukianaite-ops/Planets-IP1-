@@ -139,6 +139,16 @@ int main(){
         }
         cout << "PASS" <<endl;
 
+        //test3: patikrinti ar velidacija meta exception
+        cout << "Test4: ";
+        {
+            Planet p1("Earth", 9.81, 1);
+            Planet p2("Mars", 3.72, 0);
+            Planet p3("Venus", 8.87, 0);
+            assert(p1.getId() < p2.getId());
+            assert(p2.getId() < p3.getId());
+        }
+        cout << "PASS" << endl;
     }catch(...){
         cout << "Unexpected error occured!" << endl;
     }
