@@ -32,5 +32,5 @@ Programa automatiškai patikrina penkis esminius scenarijus:
 Norėdami sukompiliuoti ir paleisti programą, naudokite bet kurį C++ kompiliatorių:
 
 ```bash
-g++ main.cpp -o planetos
+g++ PlanetsIP1.cpp -o planetos
 ./planetos
